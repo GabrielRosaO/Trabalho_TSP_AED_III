@@ -1,41 +1,35 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
 public class Grafo extends Exception {
     private int[][] matrixAdjacencia;
-    private int matrixSize = 0;
+    private int matrixSize = 0;// tamanho da matrix
 
-    void setMatrixSize(int size) {
-        this.matrixSize = size;
-        matrixAdjacencia = new int[matrixSize][matrixSize];
-    }
+    // set do tamanho da matrix, indicado pelo usuário
 
-    int getMatrixSize() {
-        return this.matrixSize;
-    }
-
-    void setMatrix(String fileName) {
+    // set da matrix, usa o tamanho da matrix dado pelo usuario e le do arquivo os
+    // valores em cada posição e salva a matrix
+    // do arquvio .txt no grafo
+    public void setMatrix(File fileName) {
         try {
-            Scanner in = new Scanner(new FileReader(fileName));
+            Scanner in = new Scanner(fileName);
 
-            while (in.hasNextLine()) {
+            while (in.hasNextInt()) {
                 for (int i = 0; i < matrixSize; i++) {
                     for (int j = 0; j < matrixSize; j++) {
                         this.matrixAdjacencia[i][j] = in.nextInt();
                     }
                 }
             }
-
-            in.close();
+            // in.close();
         } catch (FileNotFoundException error) {
             throw new IllegalArgumentException("File not found!");
         }
 
     }
 
-    int[][] getMatrix() {
-        return this.matrixAdjacencia;
-    }
+    // @override
 
 }
