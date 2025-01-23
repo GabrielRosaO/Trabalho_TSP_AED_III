@@ -1,36 +1,57 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Prim mst = new Prim();
 
-        mst.setMatrixSize(11);
+        int numVertices = 11;
+        int verticeInicio = 0;
 
-        int matrixSize = mst.getMatrixSize();
-        // String file = "file:C:/Users/Usuario/Documents/Codigos em//
-        // Java/Trabalho_TSP_AED_III/src/teste.txt";
+        // Resultado Exato
+        TSPExact exato = new TSPExact();
 
-        BufferedReader fileBuffer = new BufferedReader(new FileReader("bin\\teste.txt"));
-        Scanner file = new Scanner(fileBuffer);
+        exato.setNumVertices(numVertices);
+
+        int matrixSize = exato.getNumVertices();
+
+        BufferedReader fileBuffer = new BufferedReader(new FileReader("bin\\tsp1_253.txt"));
+        Scanner fileExact = new Scanner(fileBuffer);
 
         int matrixTeste[][] = new int[matrixSize][matrixSize];
+        int caminhoInicial[] = new int[matrixSize];
+        exato.setCaminhoFinal();
 
         int i = 0;
         do {
             for (int j = 0; j < matrixSize; j++) {
-                matrixTeste[i][j] = file.nextInt();
+                matrixTeste[i][j] = fileExact.nextInt();
             }
+            caminhoInicial[i] = i;
             i++;
-        } while (file.hasNextInt() && i < matrixSize);
+        } while (fileExact.hasNextInt() && i < matrixSize);
 
-        file.close();
+        fileExact.close();
 
-        mst.showMatrix(matrixTeste);
+        System.out.println(exato.permutacaoDeCiclos(matrixTeste, caminhoInicial, verticeInicio, numVertices - 1));
 
-        System.out.println(mst.primAlgorithm(matrixTeste));
+        /*
+         * // Resultado Aproximado
+         * 
+         * PrimTSP mst = new PrimTSP();
+         * mst.setMatrixSize(11);
+         * matrixSize = mst.getMatrixSize();
+         * 
+         * 
+         * List<Integer> tspPath = mst.primTSP(matrixTeste);
+         * 
+         * System.out.println("Caminho Aproximado do TSP: " + tspPath);
+         * System.out.println("Custo total do caminho: " + mst.getCustoTotal());
+         * 
+         * // System.out.println(mst.primAlgorithm(matrixTeste));
+         */
 
     }
 }

@@ -1,4 +1,7 @@
-public class Prim extends Exception {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PrimTSP {
     private int custoTotal = 0;
     private int matrixSize = 0;
 
@@ -18,21 +21,12 @@ public class Prim extends Exception {
         }
     }
 
-    private int calculoCustoTotal(int custos[]) {
-        for (int i = 0; i < custos.length; i++) {
-            this.custoTotal += custos[i];
-        }
-
-        return custoTotal;
-    }
-
     private int minCusto(int custos[], Boolean mst[]) {
-        // inicializa o valor mínimo
         int min = Integer.MAX_VALUE;
         int index = -1;
 
         for (int i = 0; i < this.matrixSize; i++) {
-            if (custos[i] < min && mst[i] == false) {
+            if (custos[i] < min && !mst[i]) {
                 min = custos[i];
                 index = i;
             }
@@ -40,7 +34,7 @@ public class Prim extends Exception {
         return index;
     }
 
-    public int primAlgorithm(int matrixAdjacencia[][]) {
+    public List<Integer> primTSP(int matrixAdjacencia[][]) {
         Boolean mst[] = new Boolean[this.matrixSize];
         int vertices[] = new int[this.matrixSize];
         int custos[] = new int[this.matrixSize];
@@ -49,24 +43,53 @@ public class Prim extends Exception {
         custos[0] = 0;
         vertices[0] = -1;
 
+        // Construir a árvore geradora mínima (MST)
         for (int i = 0; i < this.matrixSize - 1; i++) {
             int minIndex = minCusto(custos, mst);
-
             mst[minIndex] = true;
 
             for (int j = 0; j < this.matrixSize; j++) {
-                if (matrixAdjacencia[minIndex][j] != 0 && mst[j] == false
-                        && matrixAdjacencia[minIndex][j] < custos[j]) {
+                if (matrixAdjacencia[minIndex][j] != 0 && !mst[j] && matrixAdjacencia[minIndex][j] < custos[j]) {
                     vertices[j] = minIndex;
                     custos[j] = matrixAdjacencia[minIndex][j];
                 }
             }
         }
-        for (int i = 0; i < custos.length; i++) {
-            System.out.println(custos[i]);
+
+        // Caminhada em pré-ordem para obter uma solução aproximada para o TSP
+        List<Integer> tspPath = new ArrayList<>();
+        boolean visited[] = new boolean[this.matrixSize];
+        preorderTraversal(0, vertices, visited, tspPath);
+
+        // Adiciona o vértice inicial ao final para fechar o ciclo
+        tspPath.add(0);
+
+        // Calculo do custo total
+        this.custoTotal = 0;
+        for (int i = 0; i < tspPath.size() - 1; i++) {
+            int from = tspPath.get(i);
+            int to = tspPath.get(i + 1);
+            this.custoTotal += matrixAdjacencia[from][to];
         }
 
-        return calculoCustoTotal(custos);
+        return tspPath;
+    }
+
+    // Função que encontra e monta a pre ordem dos nodos, adicionando na lista
+    // tspPath na ordem
+    private void preorderTraversal(int node, int[] vertices, boolean[] visited, List<Integer> tspPath) {
+        visited[node] = true;
+        tspPath.add(node);
+
+        for (int i = 0; i < vertices.length; i++) {
+            if (vertices[i] == node && !visited[i]) {
+                preorderTraversal(i, vertices, visited, tspPath);
+            }
+        }
+    }
+
+    public int getCustoTotal() {
+        return this.custoTotal;
     }
 
     public void showMatrix(int matrixAdjacencia[][]) {
