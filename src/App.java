@@ -35,23 +35,33 @@ public class App {
 
         fileExact.close();
 
-        System.out.println(exato.permutacaoDeCiclos(matrixTeste, caminhoInicial, verticeInicio, numVertices - 1));
+        long start = System.currentTimeMillis();
 
-        /*
-         * // Resultado Aproximado
-         * 
-         * PrimTSP mst = new PrimTSP();
-         * mst.setMatrixSize(11);
-         * matrixSize = mst.getMatrixSize();
-         * 
-         * 
-         * List<Integer> tspPath = mst.primTSP(matrixTeste);
-         * 
-         * System.out.println("Caminho Aproximado do TSP: " + tspPath);
-         * System.out.println("Custo total do caminho: " + mst.getCustoTotal());
-         * 
-         * // System.out.println(mst.primAlgorithm(matrixTeste));
-         */
+        System.out.println("Custo total do Caminho: "
+                + exato.permutacaoDeCiclos(matrixTeste, caminhoInicial, verticeInicio, numVertices - 1));
+
+        long elapsed = System.currentTimeMillis() - start;
+
+        System.out.printf("Tempo de execução em Segundos: %d\nTempo de execução em Milissegundos: %d",
+                elapsed / 1000, elapsed);
+
+        // Resultado Aproximado
+
+        PrimTSP mst = new PrimTSP();
+        mst.setMatrixSize(11);
+        matrixSize = mst.getMatrixSize();
+
+        long startAprox = System.currentTimeMillis();
+
+        List<Integer> tspPath = mst.primTSP(matrixTeste);
+
+        long elapsedAprox = System.currentTimeMillis() - start;
+
+        System.out.println("Caminho Aproximado do TSP: " + tspPath);
+        System.out.println("Custo total do caminho aproximado: " + mst.getCustoTotal());
+
+        System.out.printf("Tempo de execução em Segundos: %d\nTempo de execução em Milissegundos: %d",
+                elapsed / 1000, elapsed);
 
     }
 }
