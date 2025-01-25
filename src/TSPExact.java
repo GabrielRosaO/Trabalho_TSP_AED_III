@@ -66,6 +66,7 @@ public class TSPExact {
             }
         }
 
+        // Retorna o custo minimo final
         return custoMinimoFinal;
     }
 

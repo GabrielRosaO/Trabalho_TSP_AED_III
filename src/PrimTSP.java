@@ -14,6 +14,7 @@ public class PrimTSP {
         this.matrixSize = size;
     }
 
+    // Inicializa os vetores utilizados
     private void initializeVectors(int custos[], Boolean mst[]) {
         for (int i = 0; i < this.matrixSize; i++) {
             custos[i] = Integer.MAX_VALUE;
@@ -21,6 +22,7 @@ public class PrimTSP {
         }
     }
 
+    // Retorna o indice do caminho de menor custo
     private int minCusto(int custos[], Boolean mst[]) {
         int min = Integer.MAX_VALUE;
         int index = -1;
@@ -40,14 +42,18 @@ public class PrimTSP {
         int custos[] = new int[this.matrixSize];
         initializeVectors(custos, mst);
 
+        // Inicia a posição do primeiro vértice como já visitado, já que ele é o ponto
+        // de partida
         custos[0] = 0;
         vertices[0] = -1;
 
-        // Construir a árvore geradora mínima (MST)
+        // Construir a árvore geradora mínima
         for (int i = 0; i < this.matrixSize - 1; i++) {
-            int minIndex = minCusto(custos, mst);
-            mst[minIndex] = true;
+            int minIndex = minCusto(custos, mst);// Encontra o indice do caminho de menor custo na iteração atual
+            mst[minIndex] = true;// marca aquele vértice como presente na MST
 
+            // Faz a alteração e ajustes dos vetores de custo com o menor custo e salva o
+            // indice do vértice que foi visitado
             for (int j = 0; j < this.matrixSize; j++) {
                 if (matrixAdjacencia[minIndex][j] != 0 && !mst[j] && matrixAdjacencia[minIndex][j] < custos[j]) {
                     vertices[j] = minIndex;
@@ -56,7 +62,7 @@ public class PrimTSP {
             }
         }
 
-        // Caminhada em pré-ordem para obter uma solução aproximada para o TSP
+        // Caminhada em pré-ordem dos nodos para obter uma solução aproximada para o TSP
         List<Integer> tspPath = new ArrayList<>();
         boolean visited[] = new boolean[this.matrixSize];
         preorderTraversal(0, vertices, visited, tspPath);
@@ -72,6 +78,7 @@ public class PrimTSP {
             this.custoTotal += matrixAdjacencia[from][to];
         }
 
+        // Retorna a List com a pré-ordem dos vértices da MST
         return tspPath;
     }
 
@@ -88,10 +95,12 @@ public class PrimTSP {
         }
     }
 
+    // Retorna o custo total da MST
     public int getCustoTotal() {
         return this.custoTotal;
     }
 
+    // Imprime a matrix
     public void showMatrix(int matrixAdjacencia[][]) {
         for (int i = 0; i < this.matrixSize; i++) {
             for (int j = 0; j < this.matrixSize; j++) {
