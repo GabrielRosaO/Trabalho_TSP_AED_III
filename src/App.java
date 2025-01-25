@@ -68,7 +68,8 @@ public class App {
 
                 long elapsed = System.currentTimeMillis() - start;
 
-                System.out.printf("Tempo de execução em Segundos: %d\nTempo de execução em Milissegundos: %d\n\n",
+                System.out.printf(
+                        "Tempo de execução em Segundos: %d\nTempo de execução em Milissegundos: %d\n\n",
                         elapsed / 1000, elapsed);
 
             } else if (algoOpcao == 2) {
