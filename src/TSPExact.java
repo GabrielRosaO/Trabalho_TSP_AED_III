@@ -2,6 +2,8 @@ public class TSPExact {
     private int verticesNum = 0;
     private int custoMinimoFinal = Integer.MAX_VALUE;
     private int caminhoFinal[];
+    public long tempoTotal = 0;
+    public long contadorPermutacao = 0;
 
     // get do numero de vertices
     public int getNumVertices() {
@@ -34,6 +36,9 @@ public class TSPExact {
     // Vai por força bruta em todas as permutações do grafo
     // Basicamente vai comparar todos os ciclos até achar o menor deles
     public int permutacaoDeCiclos(int matrixAdjacencia[][], int caminhoArestas[], int verticeInicio, int verticeFim) {
+
+        long startTime = System.nanoTime();
+
         // Vai fazer isso para todos os ciclos, basicamente ta comparando o valor do
         // ciclo atual da recursão com o anterior
         // e salva na variavel do objeto custoMinimoFinal
@@ -45,6 +50,7 @@ public class TSPExact {
                     this.caminhoFinal[i] = caminhoArestas[i];
                 }
             }
+            contadorPermutacao++;
         } else {
             // pega o primerio vertice, troca de lugar com o vertice i
             // percorre todos os vertices fazendo isso alterando o vertice de inicio com o
@@ -65,6 +71,10 @@ public class TSPExact {
                 caminhoArestas[i] = temp;
             }
         }
+
+        long endTime = System.nanoTime() - startTime;
+
+        tempoTotal += endTime;
 
         // Retorna o custo minimo final
         return custoMinimoFinal;

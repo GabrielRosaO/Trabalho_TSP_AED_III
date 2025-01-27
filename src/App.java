@@ -65,6 +65,9 @@ public class App {
 
                 System.out.println("Custo total do Caminho: "
                         + exato.permutacaoDeCiclos(matrixTeste, caminhoInicial, verticeInicio, numVertices - 1));
+                System.out.println("Total de permutações feitas: " + exato.contadorPermutacao);
+                System.out.println("Tempo médio por permutação: " + (exato.tempoTotal / exato.contadorPermutacao)
+                        + " nanosegundos");
 
                 long elapsed = System.nanoTime() - start;
 
