@@ -18,7 +18,8 @@ Nesse trabalho tínhamos que desenvolver 2 algoritmos: Um algoritmo exato e outr
 
 Para execução dos dois algoritmos tenha certeza de que todos os arquivos com as matrizes de adjacência dos grafos seja um arquivo .txt neste formato:
 
-```0 29  20  21  16  31  100 12  4   31  18
+```
+0 29  20  21  16  31  100 12  4   31  18
 29  0   15  29  28  40  72  21  29  41  12
 20  15  0   15  14  25  81  9   23  27  13
 21  29  15  0   4   12  92  12  25  13  25
@@ -31,8 +32,10 @@ Para execução dos dois algoritmos tenha certeza de que todos os arquivos com a
 18  12  13  25  22  37  84  13  18  38  0
 ```
 
-Todos os arquivos que desejar executar devem estar na pasta raiz do local em que será executado o código, como no exemplo abaixo:
-`Seu / Caminho / Ate / A / Pasta /Trabalho_TSP_AED_III/teste.txt`
+Todos os arquivos que desejar executar devem estar na pasta raiz do local em que será executado o código, como no exemplo:
+`
+Seu / Caminho / Ate / A / Pasta /Trabalho_TSP_AED_III/teste.txt
+`
 
 ### Output
 
