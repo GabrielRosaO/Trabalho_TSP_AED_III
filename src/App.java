@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -77,8 +76,6 @@ public class App {
                 mst.setMatrixSize(numVertices);
 
                 long startAprox = System.nanoTime();
-
-                List<Integer> tspPath = mst.primTSP(matrixTeste);
 
                 long elapsedAprox = System.nanoTime() - startAprox;
 
