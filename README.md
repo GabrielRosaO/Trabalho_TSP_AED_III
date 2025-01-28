@@ -44,6 +44,6 @@ O código pedirá pra inserir a quantidade de vértices o grafo contém, o nome 
 Após a escolha ele retornará o resultado do custo do caminho encontrado e os tempos de execução.
 
 - Algoritmo Exato: Os tempos retornados são em Segundos e Milissegundos;
-- Algoritmo Aproximativo: Os tempos retornados são em Milissegundos e Nanosegundos;
+- Algoritmo Aproximativo: Os tempos retornados são em Milissegundos e Microssegundos;
 
 Essa diferença existe pois o algoritmo aproximativo executa muito rapido para os exemplos dados, não fazendo sentido demonstrar os tempos em segundos para ele.
