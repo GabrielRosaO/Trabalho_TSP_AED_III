@@ -80,4 +80,11 @@ public class TSPExact {
         return custoMinimoFinal;
     }
 
+    public void showArestas() {
+        for (int i = 0; i < this.caminhoFinal.length; i++) {
+            System.out.printf(this.caminhoFinal[i] + " ");
+        }
+        System.out.println(" ");
+    }
+
 }

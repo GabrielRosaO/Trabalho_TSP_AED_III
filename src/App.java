@@ -3,8 +3,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.Date;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -65,14 +63,12 @@ public class App {
 
                 System.out.println("Custo total do Caminho: "
                         + exato.permutacaoDeCiclos(matrixTeste, caminhoInicial, verticeInicio, numVertices - 1));
-                System.out.println("Total de permutações feitas: " + exato.contadorPermutacao);
-                System.out.println("Tempo médio por permutação: " + (exato.tempoTotal / exato.contadorPermutacao)
-                        + " nanosegundos");
 
                 long elapsed = System.nanoTime() - start;
 
                 System.out.printf("Tempo de execução em Segundos: %d s\nTempo de execução em Milissegundos: %d ms\n\n",
                         elapsed / 1000000000, elapsed / 1000000);
+                exato.showArestas();
 
             } else if (algoOpcao == 2) {
                 // Resultado Aproximado
@@ -87,10 +83,10 @@ public class App {
                 long elapsedAprox = System.nanoTime() - startAprox;
 
                 System.out.println("Custo total do caminho aproximado: " + mst.getCustoTotal());
-                // System.out.println("Caminho Aproximado do TSP: " + tspPath);
 
-                System.out.printf("Tempo de execução em Milissegundos: %d ms\nTempo de execução em Nanosegundos: %d ns",
-                        elapsedAprox / 1000000, elapsedAprox);
+                System.out.printf(
+                        "Tempo de execução em Milissegundos: %d ms\nTempo de execução em Microssegundos: %d µs",
+                        elapsedAprox / 1000000, elapsedAprox / 1000);
             }
         } catch (IOException error) {
             System.err.printf("Erro na abertura do arquivo: %s. \n", error.getMessage());
