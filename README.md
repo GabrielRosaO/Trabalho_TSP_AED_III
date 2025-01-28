@@ -1,7 +1,7 @@
 # Trabalho de AED III TSP
 
 ```
-Autores: Gabriel Rosa de Oliveira Silva e Karen Ono Satie
+Autores: Gabriel Rosa de Oliveira Silva e Karen Satie Ono
 ```
 
 ### Descrição do Trabalho
