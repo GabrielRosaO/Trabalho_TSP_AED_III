@@ -34,7 +34,7 @@ Para execução dos dois algoritmos tenha certeza de que todos os arquivos com a
 
 Todos os arquivos que desejar executar devem estar na pasta raiz do local em que será executado o código, como no exemplo:
 `
-Seu / Caminho / Ate / A / Pasta /Trabalho_TSP_AED_III/teste.txt
+Seu / Caminho / Ate / A / Pasta /Trabalho_TSP_AED_III_Código/teste.txt
 `
 
 ### Output
